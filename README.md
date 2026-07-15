@@ -2,7 +2,7 @@
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/wikijs-template)
 
-Wiki.js is a modern, lightweight, and highly powerful wiki and knowledge base platform with robust markdown support. One-click deploy on Railway with optional PostgreSQL companion database.
+Wiki.js is a modern, lightweight, and highly powerful wiki and knowledge base platform with robust markdown support. One-click deploy on Railway with a PostgreSQL companion database.
 
 ## About Hosting
 
@@ -41,23 +41,21 @@ Wiki.js is one of the most popular open-source wiki solutions because it offers:
 This template provisions two services automatically:
 
 - **Wiki.js** — the web app container (`requarks/wiki:2.5.314`)
-- **PostgreSQL 16** — a sibling `postgres` service (`postgres/`) on
-  `postgres.railway.internal:5432`, with a persistent volume for its data.
+- **PostgreSQL 16** — a sibling `postgres` service on `postgres.railway.internal:5432`, with a persistent volume for its data.
 
-Both are created on deploy — no manual database setup is needed. The wiki
-connects to Postgres out of the box using the credentials defined in
-`postgres/template-vars.json` (defaults: user `postgres`, password `postgres`,
-database `wikijs`). For SQLite instead, set `DB_TYPE=sqlite` and mount the
-`/wiki/data` volume; the Postgres service can then be removed.
+Both are created on deploy — no manual database setup is needed. The wiki connects to Postgres out of the box using the credentials defined in `postgres/template-vars.json` (defaults: user `postgres`, password `postgres`, database `wikijs`). For SQLite instead, set `DB_TYPE=sqlite` and mount the `/wiki/data` volume; the Postgres service can then be removed.
 
-All data persists in the mounted volumes automatically. Once deployed, access
-Wiki.js at your Railway-provided URL and create your first admin account on the
-setup wizard.
+All data persists in the mounted volumes automatically. Once deployed, access Wiki.js at your Railway-provided URL and create your first admin account on the setup wizard.
 
 ## Configuration
 
-Copy .env.example to configure database credentials. The defaults match the
-sibling postgres service, so a fresh deploy works without changes:
+### Deployment Dependencies
+
+- PostgreSQL 16 service running alongside Wiki.js
+- `DB_HOST` set to `postgres.railway.internal`
+- `DB_TYPE` set to `postgres`
+
+Copy `.env.example` to configure database credentials. The defaults match the sibling postgres service, so a fresh deploy works without changes:
 
 - DB_TYPE: Database engine (postgres, mysql, sqlite) — default postgres
 - DB_HOST: PostgreSQL host — `postgres.railway.internal` (sibling service)
