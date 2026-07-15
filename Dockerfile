@@ -19,7 +19,12 @@ LABEL org.opencontainers.image.title="Wiki.js" \
 ENV WIKI_PORT=3000 \
     NODE_ENV=production \
     TZ=UTC \
-    DB_TYPE=sqlite \
+    DB_TYPE=postgres \
+    DB_HOST=postgres.railway.internal \
+    DB_PORT=5432 \
+    DB_NAME=wikijs \
+    DB_USER=postgres \
+    DB_PASS=postgres \
     DB_FILEPATH=/wiki/data/wikijs.db
 
 RUN mkdir -p /wiki/data && chown node:node /wiki/data

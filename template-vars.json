@@ -1,28 +1,38 @@
 {
+  "DB_TYPE": {
+    "defaultValue": "postgres",
+    "description": "Database engine: postgres, mysql, mssql, or sqlite (default: postgres).",
+    "isOptional": true
+  },
   "DB_HOST": {
-    "defaultValue": "${{Postgres.HOST}}",
-    "description": "PostgreSQL database host. Auto-injected from Railway Postgres companion.",
+    "defaultValue": "postgres.railway.internal",
+    "description": "PostgreSQL host. Points at the sibling 'postgres' Railway service in this template.",
     "isOptional": false
   },
   "DB_PORT": {
-    "defaultValue": "${{Postgres.PORT}}",
-    "description": "PostgreSQL database port. Auto-injected from Railway Postgres companion.",
+    "defaultValue": "5432",
+    "description": "PostgreSQL port (default: 5432).",
     "isOptional": true
   },
   "DB_NAME": {
-    "defaultValue": "${{Postgres.NAME}}",
-    "description": "Database name for Wiki.js data. Auto-injected from Railway Postgres companion.",
+    "defaultValue": "wikijs",
+    "description": "Database name for Wiki.js data. Must match the postgres service's POSTGRES_DB (/wikijs).",
     "isOptional": false
   },
   "DB_USER": {
-    "defaultValue": "${{Postgres.USER}}",
-    "description": "Database user for Wiki.js. Auto-injected from Railway Postgres companion.",
+    "defaultValue": "postgres",
+    "description": "Database user. Must match the postgres service's POSTGRES_USER.",
     "isOptional": false
   },
   "DB_PASS": {
-    "defaultValue": "${{Postgres.PASSWORD}}",
-    "description": "Database password. Auto-injected from Railway Postgres companion.",
+    "defaultValue": "postgres",
+    "description": "Database password. Must match the postgres service's POSTGRES_PASSWORD. Rotate both before production.",
     "isOptional": false
+  },
+  "DB_FILEPATH": {
+    "defaultValue": "/wiki/data/wikijs.db",
+    "description": "Path for SQLite database file when using DB_TYPE=sqlite.",
+    "isOptional": true
   },
   "PORT": {
     "defaultValue": "3000",
@@ -40,18 +50,8 @@
     "isOptional": true
   },
   "URL_BASE": {
-    "defaultValue": "",
-    "description": "Public URL of your wiki. Required for proper asset serving.",
-    "isOptional": true
-  },
-  "DB_TYPE": {
-    "defaultValue": "postgres",
-    "description": "Database engine: postgres, mysql, mssql, or sqlite (default: postgres).",
-    "isOptional": true
-  },
-  "DB_FILEPATH": {
-    "defaultValue": "/wiki/data/wikijs.db",
-    "description": "Path for SQLite database file when using DB_TYPE=sqlite.",
+    "defaultValue": "https://${{RAILWAY_PUBLIC_DOMAIN}}",
+    "description": "Public URL of your wiki. Auto-populated from Railway's public domain.",
     "isOptional": true
   }
 }

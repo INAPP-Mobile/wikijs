@@ -1,6 +1,6 @@
 # Deploy and Host Wiki.js on Railway
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/wikijs)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/wikijs-template)
 
 Wiki.js is a modern, lightweight, and highly powerful wiki and knowledge base platform with robust markdown support. One-click deploy on Railway with optional PostgreSQL companion database.
 
@@ -38,26 +38,33 @@ Wiki.js is one of the most popular open-source wiki solutions because it offers:
 
 ## Dependencies for Running This Template
 
-This template runs Wiki.js as a single Docker container. For PostgreSQL database support:
+This template provisions two services automatically:
 
-- A Railway account at https://railway.app
-- PostgreSQL companion database (add via Railway UI or CLI)
-- Environment variables set per template-vars.json
+- **Wiki.js** — the web app container (`requarks/wiki:2.5.314`)
+- **PostgreSQL 16** — a sibling `postgres` service (`postgres/`) on
+  `postgres.railway.internal:5432`, with a persistent volume for its data.
 
-No additional infrastructure needed — all data persists in the mounted volume automatically.
+Both are created on deploy — no manual database setup is needed. The wiki
+connects to Postgres out of the box using the credentials defined in
+`postgres/template-vars.json` (defaults: user `postgres`, password `postgres`,
+database `wikijs`). For SQLite instead, set `DB_TYPE=sqlite` and mount the
+`/wiki/data` volume; the Postgres service can then be removed.
 
-Once deployed, access Wiki.js at your Railway-provided URL and create your first admin account on the setup wizard.
+All data persists in the mounted volumes automatically. Once deployed, access
+Wiki.js at your Railway-provided URL and create your first admin account on the
+setup wizard.
 
 ## Configuration
 
-Copy .env.example to configure database credentials:
+Copy .env.example to configure database credentials. The defaults match the
+sibling postgres service, so a fresh deploy works without changes:
 
-- DB_ENGINE: Database engine (postgres, mysql, sqlite) — default postgres
-- DB_HOST: PostgreSQL/MySQL host — required when using postgres
+- DB_TYPE: Database engine (postgres, mysql, sqlite) — default postgres
+- DB_HOST: PostgreSQL host — `postgres.railway.internal` (sibling service)
 - DB_PORT: Database port — default 5432
 - DB_NAME: Database name — default wikijs
-- DB_USER: Database user — default wikijs
-- DB_PASS: Database password — auto-generated on first deploy
+- DB_USER: Database user — default postgres
+- DB_PASS: Database password — default postgres (rotate before production)
 - PORT: Service port (Railway sets automatically) — default 3000
 - APP_NAME: Display name of your wiki — default Wiki.js
 - TIMEZONE: Server timezone — default UTC

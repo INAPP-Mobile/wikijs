@@ -1,0 +1,18 @@
+{
+  "POSTGRES_USER": {
+    "value": "postgres",
+    "description": "Postgres superuser name. Wiki.js connects with these credentials."
+  },
+  "POSTGRES_PASSWORD": {
+    "value": "postgres",
+    "description": "Postgres password. Default literal 'postgres' so a fresh marketplace deploy authenticates out of the box. Rotate this in the dashboard AND update the wiki's DB_PASS to match before production."
+  },
+  "POSTGRES_DB": {
+    "value": "wikijs",
+    "description": "Initial database created on first boot. Must match the DB_NAME Wiki.js uses (/wikijs path component)."
+  },
+  "PGDATA": {
+    "value": "/var/lib/postgresql/data",
+    "description": "Postgres data directory inside the mounted volume. Must be a subpath of the volume mount path /var/lib/postgresql."
+  }
+}

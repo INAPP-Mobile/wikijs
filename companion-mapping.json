@@ -1,9 +1,9 @@
 {
   "postgres": {
-    "HOST": "DB_HOST",
-    "PORT": "DB_PORT",
-    "NAME": "DB_NAME",
-    "USER": "DB_USER",
-    "PASSWORD": "DB_PASS"
+    "HOST": "postgres.railway.internal",
+    "PORT": "5432",
+    "NAME": "wikijs",
+    "USER": "postgres",
+    "PASSWORD": "postgres"
   }
 }
