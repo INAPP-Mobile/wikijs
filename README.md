@@ -1,6 +1,6 @@
 # Deploy and Host Wiki.js on Railway
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/wikijs-template)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/wikijs-1)
 
 Wiki.js is a modern, lightweight, and highly powerful wiki and knowledge base platform with robust markdown support. One-click deploy on Railway with a PostgreSQL companion database.
 
