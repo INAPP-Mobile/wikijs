@@ -5,7 +5,7 @@
 # License:          AGPL-3.0
 # =============================================================================
 
-FROM requarks/wiki:2.5.314
+FROM requarks/wiki:2.5.315
 
 ARG BUILD_YEAR=2026
 
